@@ -37,6 +37,63 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: MyButtomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(Icons.menu, color: Colors.black),
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[900],
+        child: Column(
+          children: [
+            //logo
+            DrawerHeader(
+              child: Image.asset(
+                'lib/images/nikeLogo.png',
+                color: Colors.white,
+              ),
+            ),
+
+            //divider
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Divider(color: Colors.grey[800]),
+            ),
+
+            //other pages
+            const Padding(
+              padding: EdgeInsets.only(left: 25.0),
+              child: ListTile(
+                leading: Icon(Icons.home),
+                title: Text("Home", style: TextStyle(color: Colors.white)),
+              ),
+            ),
+
+            const Padding(
+              padding: EdgeInsets.only(left: 25.0),
+              child: ListTile(
+                leading: Icon(Icons.info),
+                title: Text("About", style: TextStyle(color: Colors.white)),
+              ),
+            ),
+
+            const Padding(
+              padding: EdgeInsets.only(left: 25.0),
+              child: ListTile(
+                leading: Icon(Icons.logout),
+                title: Text("Logout", style: TextStyle(color: Colors.white)),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: _page[_selectedIndex],
     );
   }
